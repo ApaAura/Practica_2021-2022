@@ -1,0 +1,104 @@
+﻿<Window x:Class="Tema3_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema3_WPF"
+        mc:Ignorable="d"
+        Title="Tema 3" Height="650" Width="600">
+    <Window.Resources>
+        <Style  x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style  x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+        </Style>
+        <Style  x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Margin" Value="20 15" />
+            <Setter Property="Background" Value="#334b6e" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontFamily" Value="Cambria" />
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#334b6e"
+          Margin="5 0 5 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.ColumnSpan="2" Source="1.png"
+               Margin="10"/>
+        <Button Grid.Row="0" Grid.Column="2" 
+                Grid.ColumnSpan="2" Margin="60 10" 
+                Content="Close" FontSize="20"
+                Style="{StaticResource ButtonStyle}"
+                Click="Close_Click"/>
+        <Label Content="ID inregistrare"
+               Grid.Row="1" Grid.Column="0"
+               Margin="10 0 0 0"
+               Style="{StaticResource LabelStyle}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" 
+                 Width="50" Height="35"
+                 Text="{Binding Biblioteca.ID}"
+                 Name="IdTBox"
+                 Style="{StaticResource TextBoxStyle}" IsEnabled="False"/>
+        <GroupBox Grid.Row="2" Grid.Column="0"
+                  Margin="10" Grid.ColumnSpan="4"
+                  Header="Datele cartii" Foreground="White"
+                  FontSize="20"
+                  FontFamily="Cambria">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Autorul" Grid.Row="0" Style="{StaticResource LabelStyle}"/>
+                <Label Content="Titlu" Grid.Row="1" Style="{StaticResource LabelStyle}"/>
+                <Label Content="Editura" Grid.Row="2" Style="{StaticResource LabelStyle}"/>
+                <Label Content="Numar pagini" Grid.Row="3" Style="{StaticResource LabelStyle}"/>
+                <Label Content="Anul publicarii" Grid.Row="4" Style="{StaticResource LabelStyle}"/>
+
+                <TextBox Width="230" Height="25" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding Biblioteca.Autorul}"/>
+                <TextBox Width="230" Height="25" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding Biblioteca.Titlu}"/>
+                <TextBox Width="230" Height="25" Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding Biblioteca.Editura}"/>
+                <TextBox Width="230" Height="25" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding Biblioteca.NrPagini}"/>
+                <DatePicker Name="dateTimePicker"  Width="230" Grid.Row="4" Grid.Column="1" FontSize="16" SelectedDate="{Binding Biblioteca.Anul_Aparitiei}"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Lista cartilor"
+                  Grid.Row="3" Grid.ColumnSpan="4"
+                  Margin="10" Foreground="White"
+                  FontSize="20"
+                  FontFamily="Cambria">
+            <DataGrid Name="CartiDataGrid"  Background="#334b6e" ItemsSource="{Binding carti}"/>
+        </GroupBox>
+        <Button Margin="10" Content="Inregistrare"  Grid.Row="4" Grid.Column="0" Style="{StaticResource ButtonStyle}" Click="Inregistrare_Click_2"/>
+        <Button Margin="10" Content="Salvare"       Grid.Row="4" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="Salvare_Click_3"/>
+        <Button Margin="10" Content="Deschide"      Grid.Row="4" Grid.Column="2" Style="{StaticResource ButtonStyle}" Click="Deschide_Click_4"/>
+        <Button Margin="10" Content="Sortare"       Grid.Row="4" Grid.Column="3" Style="{StaticResource ButtonStyle}" Click="Sortare_Click_5"/>
+    </Grid>
+</Window>
